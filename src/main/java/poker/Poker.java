@@ -27,10 +27,9 @@ public class Poker {
      */
     public String compare(List<Card> cards1, List<Card> cards2){
 
-        String result = null;
         List<Integer> cardsValue1 =sortCard(cards1);
         List<Integer> cardsValue2 = sortCard(cards2);
-        return compareCardIntegerList(cardsValue1, cardsValue2,5);
+        return compareCardIntegerList(cardsValue1, cardsValue2,cards1.size());
     }
 
     /**
@@ -56,6 +55,12 @@ public class Poker {
         Map<Integer,Integer> cardMap1 = changeToMap(cardsValue1);
         Map<Integer,Integer> cardMap2 = changeToMap(cardsValue2);
 
+        //都没对子
+        if(cardMap1.size() == cardMap1.size()&& cardMap1.size() == cardSize){
+            result = compareCardList(cardsValue1,cardsValue2);
+            if(result!=null) return result;
+        }
+
         //两组牌都存在一个对子
         if(cardMap1.size() == cardMap2.size()&&cardMap1.size()==cardSize-1){
             result = comparePair(cardMap1,cardMap2);
@@ -66,7 +71,8 @@ public class Poker {
             cardsValue1 =  cardsValue1.stream().filter(card->card != pair).collect(Collectors.toList());
             cardsValue2 =  cardsValue2.stream().filter(card->card != pair).collect(Collectors.toList());
             //剩下牌,递归
-            compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2);
+            return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2);
+
         }
 
         //牌组1存在多一个对子
