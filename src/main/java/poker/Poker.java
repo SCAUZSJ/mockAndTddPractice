@@ -19,9 +19,12 @@ public class Poker {
 
     public String compare(String card1,String card2){
         if(mapValue(card1.substring(0,1))>mapValue(card2.substring(0,1))){
-            return "win1";
+            return "WIN1";
         }
-        return "win2";
+        if(mapValue(card1.substring(0,1))<mapValue(card2.substring(0,1))){
+             return "WIN2";
+        }
+        return "DRAW";
     }
 
     private Integer mapValue(String cardNum){
