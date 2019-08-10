@@ -47,7 +47,7 @@ public class Poker {
             return "DRAW";
         }
         if(cardSize == 1){
-            //剩一张牌 直接比较
+            //一张牌 直接比较
             result = compareCard(cardsValue1.get(0),cardsValue2.get(0));
             return result;
         }
@@ -74,6 +74,7 @@ public class Poker {
             return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2);
 
         }
+
 
         //牌组1存在多一个对子
         if(cardMap1.size()<cardMap2.size()){
