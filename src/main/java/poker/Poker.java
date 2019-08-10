@@ -1,7 +1,10 @@
 package poker;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Poker {
 
@@ -17,14 +20,31 @@ public class Poker {
         }};
     }
 
-    public String compare(String card1,String card2){
-        if(mapValue(card1.substring(0,1))>mapValue(card2.substring(0,1))){
-            return "WIN1";
-        }
-        if(mapValue(card1.substring(0,1))<mapValue(card2.substring(0,1))){
-             return "WIN2";
+    public String compare(List<Card> cards1, List<Card> cards2){
+
+        List<Integer> cardsValue1 =sortCard(cards1);
+        List<Integer> cardsValue2 = sortCard(cards2);
+        for(int i = 0;i < cardsValue1.size();i++){
+            String result = compareCard(cardsValue1.get(i),cardsValue2.get(i));
+            if(result.equals("DRAW")){
+                continue;
+            }
+            return result;
         }
         return "DRAW";
+    }
+    public String compareCard(Integer value1,Integer value2){
+        if(value1>value2){
+            return "WIN1";
+        }
+        if(value1<value2){
+            return "WIN2";
+        }
+        return "DRAW";
+    }
+
+    private List<Integer> sortCard(List<Card> cards){
+        return cards.stream().map(card -> mapValue(card.getNum())).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
     }
 
     private Integer mapValue(String cardNum){
