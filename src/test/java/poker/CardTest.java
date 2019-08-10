@@ -127,6 +127,15 @@ public class CardTest {
         Assert.assertEquals("WIN1",poker.compare(cards1,cards2));
     }
 
+    @Test
+    public void should_return_WIN2_when_cardList2_have_four_pair(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("8S"),new Card("8D"),new Card("JC"),new Card("JS"),new Card("JH"));
+        List<Card> cards2 = Arrays.asList(new Card("KS"),new Card("7H"),new Card("7S"),new Card("7C"),new Card("7D"));
+        Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
+    }
+
 
 
 }

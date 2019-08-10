@@ -60,6 +60,14 @@ public class Poker {
             result = compareCardList(cardsValue1,cardsValue2);
             if(result!=null) return result;
         }
+        //如果有 4+1
+        if(cardMap1.size() == cardMap2.size() && cardMap1.size()== cardSize-3&&(getFourPair(cardMap1)!= -1||getFourPair(cardMap2)!= -1)){
+            if(getFourPair(cardMap1)!= -1){
+                return "WIN1";
+            }
+            return "WIN2";
+        }
+
         //如果是两个三连 或者3+2
         if(cardMap1.size() == cardMap2.size()&& getThreePair(cardMap1)!= -1 && getThreePair(cardMap2)!= -1)
         {
@@ -101,6 +109,15 @@ public class Poker {
         }
 
         return "DRAW";
+    }
+
+    private Integer getFourPair(Map<Integer, Integer> cardMap) {
+        for (Integer key : cardMap.keySet()) {
+            if (cardMap.get(key) == 4) {
+                return key;
+            }
+        }
+        return -1;
     }
 
     public String compareThreePair(Map<Integer, Integer> cardMap1, Map<Integer, Integer> cardMap2) {
