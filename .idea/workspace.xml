@@ -22,30 +22,6 @@
               <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#424#550#0" expanded="true" />
-                <element signature="e#549#550#0" expanded="true" />
-                <element signature="e#554#694#0" expanded="true" />
-                <element signature="e#693#694#0" expanded="true" />
-                <element signature="e#698#937#0" expanded="true" />
-                <element signature="e#936#937#0" expanded="true" />
-                <element signature="e#942#1111#0" expanded="true" />
-                <element signature="e#1110#1111#0" expanded="true" />
-                <element signature="e#1115#1316#0" expanded="true" />
-                <element signature="e#1315#1316#0" expanded="true" />
-                <element signature="e#1320#1432#0" expanded="true" />
-                <element signature="e#1431#1432#0" expanded="true" />
-                <element signature="e#3450#3576#0" expanded="true" />
-                <element signature="e#3575#3576#0" expanded="true" />
-                <element signature="e#3581#3721#0" expanded="true" />
-                <element signature="e#3720#3721#0" expanded="true" />
-                <element signature="e#3725#3964#0" expanded="true" />
-                <element signature="e#3963#3964#0" expanded="true" />
-                <element signature="e#3968#4137#0" expanded="true" />
-                <element signature="e#4136#4137#0" expanded="true" />
-                <element signature="e#4141#4342#0" expanded="true" />
-                <element signature="e#4341#4342#0" expanded="true" />
-                <element signature="e#4346#4458#0" expanded="true" />
-                <element signature="e#4457#4458#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,11 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sales/SalesApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1149">
+            <state relative-caret-position="1738">
               <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
-              <folding>
-                <element signature="e#447#464#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -66,10 +39,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/parking/VipParkingStrategyJMockitTestAnswer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+            <state relative-caret-position="330">
+              <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
               <folding>
-                <element signature="e#647#648#0" expanded="true" />
+                <element signature="e#637#638#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,6 +86,9 @@
       </file>
     </leaf>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -134,85 +110,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parking" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sales" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="parking" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="junit_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="sales" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="extract.method.default.visibility" value="public" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
@@ -368,7 +272,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -482,6 +386,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/sales/SalesAppTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sales/SalesApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1738">
+          <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/parking/VipParkingStrategyJMockitTestAnswer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding>
+            <element signature="e#637#638#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sales/EcmService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sales/SalesReportDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -500,67 +438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="25" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sales/EcmService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/parking/VipParkingStrategyJMockitTestAnswer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-          <folding>
-            <element signature="e#647#648#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sales/SalesApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1149">
-          <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
-          <folding>
-            <element signature="e#447#464#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/sales/SalesAppTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#424#550#0" expanded="true" />
-            <element signature="e#549#550#0" expanded="true" />
-            <element signature="e#554#694#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#698#937#0" expanded="true" />
-            <element signature="e#936#937#0" expanded="true" />
-            <element signature="e#942#1111#0" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1115#1316#0" expanded="true" />
-            <element signature="e#1315#1316#0" expanded="true" />
-            <element signature="e#1320#1432#0" expanded="true" />
-            <element signature="e#1431#1432#0" expanded="true" />
-            <element signature="e#3450#3576#0" expanded="true" />
-            <element signature="e#3575#3576#0" expanded="true" />
-            <element signature="e#3581#3721#0" expanded="true" />
-            <element signature="e#3720#3721#0" expanded="true" />
-            <element signature="e#3725#3964#0" expanded="true" />
-            <element signature="e#3963#3964#0" expanded="true" />
-            <element signature="e#3968#4137#0" expanded="true" />
-            <element signature="e#4136#4137#0" expanded="true" />
-            <element signature="e#4141#4342#0" expanded="true" />
-            <element signature="e#4341#4342#0" expanded="true" />
-            <element signature="e#4346#4458#0" expanded="true" />
-            <element signature="e#4457#4458#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
