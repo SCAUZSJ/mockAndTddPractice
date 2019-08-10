@@ -62,7 +62,7 @@ public class Poker {
         }
 
         //两组牌都存在一个对子
-        if(cardMap1.size() == cardMap2.size()&&cardMap1.size()==cardSize-1){
+        if(cardMap1.size() == cardMap2.size()&&(cardMap1.size()==cardSize-1||cardMap1.size()==cardSize-2)){
             result = comparePair(cardMap1,cardMap2);
             if (result != null) return result;
             //先找到那个对子
@@ -108,16 +108,15 @@ public class Poker {
     }
 
     /**
-     * 获取一个Map中的pari key （value == 2）
+     * 获取一个Map中的最大的pair key （value == 2）
      * @param pairMap
      * @return
      */
     private Integer getPairKey(Map<Integer, Integer> pairMap) {
-        Integer pair1 = null;
+        Integer pair1 = -1;
         for (Integer key : pairMap.keySet()) {
             if (pairMap.get(key) == 2) {
-                pair1 = key;
-                break;
+                pair1 = pair1 > key ? pair1 : key;
             }
         }
         return pair1;
