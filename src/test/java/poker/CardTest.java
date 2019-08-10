@@ -84,5 +84,14 @@ public class CardTest {
         Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
     }
 
+    @Test
+    public void should_return_WIN2_when_all_cardList_have_two_same_pair(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("8S"),new Card("3D"),new Card("3C"),new Card("7S"),new Card("7H"));
+        List<Card> cards2 = Arrays.asList(new Card("TH"),new Card("3H"),new Card("3S"),new Card("7C"),new Card("7D"));
+        Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
+    }
+
 
 }
