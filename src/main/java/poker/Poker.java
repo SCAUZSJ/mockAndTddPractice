@@ -60,12 +60,19 @@ public class Poker {
             result = compareCardList(cardsValue1,cardsValue2);
             if(result!=null) return result;
         }
+        //如果是一个三连 和 两个对子
+        if(cardMap1.size() == cardMap2.size() && cardMap1.size() == cardSize-2 &&(checkThreePair(cardMap1)||checkThreePair(cardMap2))){
+            if(checkThreePair(cardMap1)){
+                return "WIN1";
+            }
+            return "WIN2";
+        }
 
-        //两组牌都存在一个对子
+        //两组牌都存在一个对子或两个对子
         if(cardMap1.size() == cardMap2.size()&&(cardMap1.size()==cardSize-1||cardMap1.size()==cardSize-2)){
             result = comparePair(cardMap1,cardMap2);
             if (result != null) return result;
-            //先找到那个对子
+            //找到刚比较的对子
             Integer pair = getPairKey(cardMap1);
             //过滤那个对子
             cardsValue1 =  cardsValue1.stream().filter(card->card != pair).collect(Collectors.toList());
@@ -87,6 +94,15 @@ public class Poker {
         }
 
         return "DRAW";
+    }
+
+    private boolean checkThreePair(Map<Integer, Integer> cardMap) {
+        for (Integer key : cardMap.keySet()) {
+            if (cardMap.get(key) == 3) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
