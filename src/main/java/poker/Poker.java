@@ -60,18 +60,12 @@ public class Poker {
             result = compareCardList(cardsValue1,cardsValue2);
             if(result!=null) return result;
         }
-        //如果是两个三连
-        if(getThreePair(cardMap1)!= -1 && getThreePair(cardMap2)!= -1)
+        //如果是两个三连 或者3+2
+        if(cardMap1.size() == cardMap2.size()&& getThreePair(cardMap1)!= -1 && getThreePair(cardMap2)!= -1)
         {
             result = compareThreePair(cardMap1, cardMap2);
             if(result!=null) return result;
-            //找到刚比较的三连
-            Integer threePair = getThreePair(cardMap1);
-            //过滤那个三连
-            cardsValue1 =  cardsValue1.stream().filter(card->card != threePair).collect(Collectors.toList());
-            cardsValue2 =  cardsValue2.stream().filter(card->card != threePair).collect(Collectors.toList());
-            //剩下牌,递归
-            return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-3);
+
         }
         //如果是一个三连 和 两个对子
         if(cardMap1.size() == cardMap2.size() && cardMap1.size() == cardSize-2 &&(getThreePair(cardMap1)!= -1 ||getThreePair(cardMap2)!= -1)){
@@ -96,12 +90,12 @@ public class Poker {
         }
 
 
-        //牌组1存在多一个对子
+        //牌组1存在多一个对子 或者 3+2 > 3 的情况
         if(cardMap1.size()<cardMap2.size()){
             return "WIN1";
         }
 
-        //牌组2存在多一个对子
+        //牌组2存在多一个对子 或者 3+2 > 3 的情况
         if(cardMap1.size()>cardMap2.size()){
             return "WIN2";
         }

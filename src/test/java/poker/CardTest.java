@@ -110,6 +110,22 @@ public class CardTest {
         List<Card> cards2 = Arrays.asList(new Card("TH"),new Card("3H"),new Card("7S"),new Card("7C"),new Card("7D"));
         Assert.assertEquals("WIN1",poker.compare(cards1,cards2));
     }
+    @Test
+    public void should_return_WIN2_when_cardList2_have_three_pair_and_pair(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("8S"),new Card("3D"),new Card("JC"),new Card("JS"),new Card("JH"));
+        List<Card> cards2 = Arrays.asList(new Card("3S"),new Card("3H"),new Card("7S"),new Card("7C"),new Card("7D"));
+        Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
+    }
+    @Test
+    public void should_return_WIN1_when_cardList2_have_three_pair_and_pair(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("8S"),new Card("8D"),new Card("JC"),new Card("JS"),new Card("JH"));
+        List<Card> cards2 = Arrays.asList(new Card("KS"),new Card("KH"),new Card("7S"),new Card("7C"),new Card("7D"));
+        Assert.assertEquals("WIN1",poker.compare(cards1,cards2));
+    }
 
 
 
