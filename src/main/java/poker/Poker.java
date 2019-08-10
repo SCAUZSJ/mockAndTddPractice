@@ -60,9 +60,22 @@ public class Poker {
             result = compareCardList(cardsValue1,cardsValue2);
             if(result!=null) return result;
         }
+        //如果是两个三连
+        if(getThreePair(cardMap1)!= -1 && getThreePair(cardMap2)!= -1)
+        {
+            result = compareThreePair(cardMap1, cardMap2);
+            if(result!=null) return result;
+            //找到刚比较的三连
+            Integer threePair = getThreePair(cardMap1);
+            //过滤那个三连
+            cardsValue1 =  cardsValue1.stream().filter(card->card != threePair).collect(Collectors.toList());
+            cardsValue2 =  cardsValue2.stream().filter(card->card != threePair).collect(Collectors.toList());
+            //剩下牌,递归
+            return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-3);
+        }
         //如果是一个三连 和 两个对子
-        if(cardMap1.size() == cardMap2.size() && cardMap1.size() == cardSize-2 &&(checkThreePair(cardMap1)||checkThreePair(cardMap2))){
-            if(checkThreePair(cardMap1)){
+        if(cardMap1.size() == cardMap2.size() && cardMap1.size() == cardSize-2 &&(getThreePair(cardMap1)!= -1 ||getThreePair(cardMap2)!= -1)){
+            if(getThreePair(cardMap1)!= -1){
                 return "WIN1";
             }
             return "WIN2";
@@ -96,13 +109,23 @@ public class Poker {
         return "DRAW";
     }
 
-    private boolean checkThreePair(Map<Integer, Integer> cardMap) {
+    public String compareThreePair(Map<Integer, Integer> cardMap1, Map<Integer, Integer> cardMap2) {
+        if(getThreePair(cardMap1)>getThreePair(cardMap2)){
+            return "WIN1";
+        }
+        if(getThreePair(cardMap1)<getThreePair(cardMap2)){
+            return "WIN2";
+        }
+        return null;
+    }
+
+    private Integer getThreePair(Map<Integer, Integer> cardMap) {
         for (Integer key : cardMap.keySet()) {
             if (cardMap.get(key) == 3) {
-                return true;
+                return key;
             }
         }
-        return false;
+        return -1;
     }
 
     /**
