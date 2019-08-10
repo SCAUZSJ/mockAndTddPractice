@@ -1,9 +1,8 @@
 package poker;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.omg.PortableInterceptor.INACTIVE;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Poker {
@@ -22,8 +21,31 @@ public class Poker {
 
     public String compare(List<Card> cards1, List<Card> cards2){
 
+        String result = null;
         List<Integer> cardsValue1 =sortCard(cards1);
         List<Integer> cardsValue2 = sortCard(cards2);
+
+        Set<Integer> set1 = new HashSet<>(cardsValue1);
+        Set<Integer> set2 = new HashSet<>(cardsValue2);
+        result = checkPair(set1, set2);
+        if (result != null) return result;
+
+        result = compareCardList(cardsValue1, cardsValue2);
+        if (result != null) return result;
+        return "DRAW";
+    }
+
+    public String checkPair(Set<Integer> set1, Set<Integer> set2) {
+        if(set1.size()<set2.size()){
+            return "WIN1";
+        }
+        if(set1.size()<set2.size()){
+            return "WIN2";
+        }
+        return null;
+    }
+
+    public String compareCardList(List<Integer> cardsValue1, List<Integer> cardsValue2) {
         for(int i = 0;i < cardsValue1.size();i++){
             String result = compareCard(cardsValue1.get(i),cardsValue2.get(i));
             if(result.equals("DRAW")){
@@ -31,9 +53,11 @@ public class Poker {
             }
             return result;
         }
-        return "DRAW";
+        return null;
     }
-    public String compareCard(Integer value1,Integer value2){
+
+
+    private String compareCard(Integer value1,Integer value2){
         if(value1>value2){
             return "WIN1";
         }
