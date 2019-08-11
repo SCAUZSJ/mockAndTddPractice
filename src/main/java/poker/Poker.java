@@ -29,6 +29,9 @@ public class Poker {
 
         List<Integer> cardsValue1 =sortCard(cards1);
         List<Integer> cardsValue2 = sortCard(cards2);
+        if(cardsValue1.equals(cardsValue2)){
+            return "DRAW";
+        }
         return compareCardIntegerList(cardsValue1, cardsValue2,cards1.size());
     }
 
@@ -42,10 +45,7 @@ public class Poker {
     public String compareCardIntegerList(List<Integer> cardsValue1, List<Integer> cardsValue2,int cardSize) {
 
         String result = null;
-        if(cardSize == 0){
-            //全部牌相等
-            return "DRAW";
-        }
+
         if(cardSize == 1){
             //一张牌 直接比较
             result = compareCard(cardsValue1.get(0),cardsValue2.get(0));
@@ -55,79 +55,90 @@ public class Poker {
         Map<Integer,Integer> cardMap1 = changeToMap(cardsValue1);
         Map<Integer,Integer> cardMap2 = changeToMap(cardsValue2);
 
-        //都没对子
-        if(cardMap1.size() == cardMap1.size()&& cardMap1.size() == cardSize){
-            result = compareCardList(cardsValue1,cardsValue2);
-            if(result!=null) return result;
-        }
-
-        //如果是4+1和4+1
-        if(cardMap1.size() == cardMap2.size() && cardMap1.size()== cardSize-3&&getFourPair(cardMap1)!= -1&&getFourPair(cardMap2)!=-1){
-            result = compareFourPair(cardMap1, cardMap2);
-            if(result!=null) return result;
-        }
-
-        //如果有 4+1
-        if(cardMap1.size() == cardMap2.size() && cardMap1.size()== cardSize-3&&(getFourPair(cardMap1)!= -1||getFourPair(cardMap2)!= -1)){
-            if(getFourPair(cardMap1)!= -1){
-                return "WIN1";
+        /**
+         * size相等，可能如下：
+         * 1. 4+1&3+2
+         * 2. 3+1+1%2+2+1
+         * 3. 牌型相同
+         */
+        if(cardMap1.size() == cardMap2.size()){
+            //a.牌型（mapSize = cardSize）：全没对子
+            if(cardMap1.size() == cardSize){
+                result = compareCardList(cardsValue1,cardsValue2);
+                if(result!=null) return result;
             }
-            return "WIN2";
-        }
 
-        //如果是两个三连 或者3+2
-        if(cardMap1.size() == cardMap2.size()&& getThreePair(cardMap1)!= -1 && getThreePair(cardMap2)!= -1)
-        {
-            result = compareThreePair(cardMap1, cardMap2);
-            if(result!=null) return result;
-
-        }
-        //如果是一个三连 和 两个对子
-        if(cardMap1.size() == cardMap2.size() && cardMap1.size() == cardSize-2 &&(getThreePair(cardMap1)!= -1 ||getThreePair(cardMap2)!= -1)){
-            if(getThreePair(cardMap1)!= -1){
-                return "WIN1";
+            //b.牌型(mapSize = cardSize-2 = 3)： 3+1+1&3+1+1 或 3+1+1&2+2+1 或 2+2+1&2+2+1
+            if(cardMap1.size() == cardSize - 2){
+                if(getThreePair(cardMap1)!= -1){
+                    if(getThreePair(cardMap2)!= -1){
+                        return compareThreePair(cardMap1, cardMap2); //3+1+1&3+1+1
+                    }
+                    return "WIN1";
+                }else if(getThreePair(cardMap2)!= -1){
+                    return "WIN2";
+                }
+                //此处将2+2+1&2+2+1的判断放在下一步
             }
-            return "WIN2";
+
+            //c.牌型（mapSize = cardSize - 1 || cardSize - 2）: 2+2+1&2+2+1 或 2+1+1+1&2+1+1+1
+            if(cardMap1.size()==cardSize-1||cardMap1.size()==cardSize-2){
+                result = comparePair(cardMap1,cardMap2);
+                if (result != null) return result;
+                //获得刚比较的对子
+                Integer pair = getPairKey(cardMap1);
+                //过滤
+                cardsValue1 =  cardsValue1.stream().filter(card->card != pair).collect(Collectors.toList());
+                cardsValue2 =  cardsValue2.stream().filter(card->card != pair).collect(Collectors.toList());
+                //递归
+                return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2);
+            }
+
+            //d.牌型(mapSize = cardSize-3 = 2)：4+1&4+1 或 4+1&3+2 或 3+2&&3+2
+            if(cardMap1.size() == cardSize - 3){
+                if(getFourPair(cardMap1)!= -1){
+                    if(getFourPair(cardMap2)!= -1){
+                        // 4+1&4+1
+                        return compareFourPair(cardMap1, cardMap2);
+                    }
+                    //4+1&4+1
+                    return "WIN1";
+                }else if(getFourPair(cardMap2)!= -1){
+                    //3+2&4+1
+                    return "WIN2";
+                }
+                //3+2&&3+2
+                return compareThreePair(cardMap1, cardMap2);
+            }
         }
 
-        //两组牌都存在一个对子或两个对子
-        if(cardMap1.size() == cardMap2.size()&&(cardMap1.size()==cardSize-1||cardMap1.size()==cardSize-2)){
-            result = comparePair(cardMap1,cardMap2);
-            if (result != null) return result;
-            //找到刚比较的对子
-            Integer pair = getPairKey(cardMap1);
-            //过滤那个对子
-            cardsValue1 =  cardsValue1.stream().filter(card->card != pair).collect(Collectors.toList());
-            cardsValue2 =  cardsValue2.stream().filter(card->card != pair).collect(Collectors.toList());
-            //剩下牌,递归
-            return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2);
-
-        }
-
-
-        //牌组1存在多一个对子 或者 3+2 > 3 的情况
+        /**
+         * 剩余情况，size越小牌型越大
+         */
         if(cardMap1.size()<cardMap2.size()){
             return "WIN1";
         }
-
-        //牌组2存在多一个对子 或者 3+2 > 3 的情况
-        if(cardMap1.size()>cardMap2.size()){
-            return "WIN2";
-        }
-
-        return "DRAW";
+        return "WIN2";
     }
 
+    /**
+     * 比较4pair
+     * @param cardMap1
+     * @param cardMap2
+     * @return
+     */
     private String compareFourPair(Map<Integer, Integer> cardMap1, Map<Integer, Integer> cardMap2) {
         if(getFourPair(cardMap1)>getFourPair(cardMap2)){
             return "WIN1";
         }
-        if(getFourPair(cardMap1)<getFourPair(cardMap2)){
-            return "WIN2";
-        }
-        return null;
+        return "WIN2";
     }
 
+    /**
+     * 获取4pair
+     * @param cardMap
+     * @return
+     */
     private Integer getFourPair(Map<Integer, Integer> cardMap) {
         for (Integer key : cardMap.keySet()) {
             if (cardMap.get(key) == 4) {
@@ -137,16 +148,24 @@ public class Poker {
         return -1;
     }
 
+    /**
+     * 比较3pair
+     * @param cardMap1
+     * @param cardMap2
+     * @return
+     */
     public String compareThreePair(Map<Integer, Integer> cardMap1, Map<Integer, Integer> cardMap2) {
         if(getThreePair(cardMap1)>getThreePair(cardMap2)){
             return "WIN1";
         }
-        if(getThreePair(cardMap1)<getThreePair(cardMap2)){
-            return "WIN2";
-        }
-        return null;
+        return "WIN2";
     }
 
+    /**
+     * 获取3pair
+     * @param cardMap
+     * @return
+     */
     private Integer getThreePair(Map<Integer, Integer> cardMap) {
         for (Integer key : cardMap.keySet()) {
             if (cardMap.get(key) == 3) {
@@ -259,7 +278,5 @@ public class Poker {
             return Integer.parseInt(cardNum);
         }
         return this.cardMap.get(cardNum);
-
-
     }
 }
