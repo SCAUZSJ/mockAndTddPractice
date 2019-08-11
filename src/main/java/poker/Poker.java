@@ -38,14 +38,6 @@ public class Poker {
         return compareCardIntegerList(cardsValue1, cardsValue2,cards1.size(),isFlush1,isFlush2);
     }
 
-    private boolean isFlush(List<Card> cards) {
-        String type = cards.get(0).getType();
-        List<Card> filterList = cards.stream().filter(card -> card.getType().equals(type)).collect(Collectors.toList());
-        if(filterList.size() == cards.size()){
-            return true;
-        }
-        return false;
-    }
 
     /**
      * 比较牌组的大小
@@ -66,6 +58,16 @@ public class Poker {
         //转map
         Map<Integer,Integer> cardMap1 = changeToMap(cardsValue1);
         Map<Integer,Integer> cardMap2 = changeToMap(cardsValue2);
+
+        //判断同花顺
+        if(isFlush1&&isStraight(cardsValue1)){
+            if(isFlush2&&isStraight(cardsValue2)){
+               return compareCard(cardsValue1.get(0),cardsValue2.get(0));
+            }
+            return "WIN1";
+        }else if(isFlush2&&isStraight(cardsValue2)){
+            return "WIN2";
+        }
 
         //判断同花
         if(isFlush1){
@@ -136,7 +138,7 @@ public class Poker {
                 cardsValue1 =  cardsValue1.stream().filter(card->card != pair).collect(Collectors.toList());
                 cardsValue2 =  cardsValue2.stream().filter(card->card != pair).collect(Collectors.toList());
                 //递归
-                return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2,isFlush1,isFlush2);
+                return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2,false,false);
             }
 
             //d.牌型(mapSize = cardSize-3 = 2)：4+1&4+1 或 4+1&3+2 或 3+2&&3+2
@@ -161,7 +163,25 @@ public class Poker {
         }
         return "WIN2";
     }
+    /**
+     * 是否同花
+     * @param cards
+     * @return
+     */
+    private boolean isFlush(List<Card> cards) {
+        String type = cards.get(0).getType();
+        List<Card> filterList = cards.stream().filter(card -> card.getType().equals(type)).collect(Collectors.toList());
+        if(filterList.size() == cards.size()){
+            return true;
+        }
+        return false;
+    }
 
+    /**
+     * 是否顺子
+     * @param cardsValue
+     * @return
+     */
     private boolean isStraight(List<Integer> cardsValue) {
         if(cardsValue.size() == 5){
              if(cardsValue.get(0) - cardsValue.get(cardsValue.size()-1) == 4){

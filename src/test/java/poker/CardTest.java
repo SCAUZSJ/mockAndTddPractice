@@ -170,6 +170,24 @@ public class CardTest {
         Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
     }
 
+    @Test
+    public void should_return_WIN2_when_cardList2_is_straight_flush(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("AS"),new Card("AD"),new Card("AC"),new Card("AH"),new Card("KH"));
+        List<Card> cards2 = Arrays.asList(new Card("4C"),new Card("5C"),new Card("6C"),new Card("7C"),new Card("8C"));
+        Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
+    }
+
+    @Test
+    public void should_return_WIN2_when_all_cardLists_is_straight_flush(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("3S"),new Card("4S"),new Card("5S"),new Card("6S"),new Card("7S"));
+        List<Card> cards2 = Arrays.asList(new Card("4C"),new Card("5C"),new Card("6C"),new Card("7C"),new Card("8C"));
+        Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
+    }
+
 
 
 }
