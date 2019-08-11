@@ -152,6 +152,14 @@ public class CardTest {
         List<Card> cards2 = Arrays.asList(new Card("4S"),new Card("5H"),new Card("6S"),new Card("7C"),new Card("8D"));
         Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
     }
+    @Test
+    public void should_return_WIN2_when_all_cardList_is_straight(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("3S"),new Card("4D"),new Card("5C"),new Card("6D"),new Card("7H"));
+        List<Card> cards2 = Arrays.asList(new Card("4S"),new Card("5H"),new Card("6S"),new Card("7C"),new Card("8D"));
+        Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
+    }
 
 
 
