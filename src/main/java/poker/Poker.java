@@ -29,10 +29,22 @@ public class Poker {
 
         List<Integer> cardsValue1 =sortCard(cards1);
         List<Integer> cardsValue2 = sortCard(cards2);
-        if(cardsValue1.equals(cardsValue2)){
+        boolean isFlush1 = isFlush(cards1);
+        boolean isFlush2 = isFlush(cards2);
+
+        if(cardsValue1.equals(cardsValue2)&&isFlush1 == isFlush2){
             return "DRAW";
         }
-        return compareCardIntegerList(cardsValue1, cardsValue2,cards1.size());
+        return compareCardIntegerList(cardsValue1, cardsValue2,cards1.size(),isFlush1,isFlush2);
+    }
+
+    private boolean isFlush(List<Card> cards) {
+        String type = cards.get(0).getType();
+        List<Card> filterList = cards.stream().filter(card -> card.getType().equals(type)).collect(Collectors.toList());
+        if(filterList.size() == cards.size()){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -42,7 +54,7 @@ public class Poker {
      * @param cardSize 当前牌组的数量
      * @return
      */
-    public String compareCardIntegerList(List<Integer> cardsValue1, List<Integer> cardsValue2,int cardSize) {
+    public String compareCardIntegerList(List<Integer> cardsValue1, List<Integer> cardsValue2,int cardSize,boolean isFlush1,boolean isFlush2) {
 
         String result = null;
 
@@ -55,20 +67,36 @@ public class Poker {
         Map<Integer,Integer> cardMap1 = changeToMap(cardsValue1);
         Map<Integer,Integer> cardMap2 = changeToMap(cardsValue2);
 
+        //判断同花
+        if(isFlush1){
+            if(isFlush2){
+                return compareCard(cardsValue1.get(0),cardsValue2.get(0));
+            }
+            if(cardMap2.size()>2){
+                return "WIN1";
+            }
+            return "WIN2";
+        }else if(isFlush2){
+            if(cardMap1.size()>2){
+                return "WIN2";
+            }
+            return "WIN1";
+        }
+
         //判断顺子
         if(isStraight(cardsValue1)){
             if(isStraight(cardsValue2)){
                 return compareCard(cardsValue1.get(0),cardsValue2.get(0)); //都是顺子，比大小
             }
-            if(cardMap2.size()>2){
-                return "WIN1"; //顺子大
+            if(cardMap2.size()<3 || isFlush2){
+                return "WIN2"; //顺子小
             }
-            return "WIN2"; //顺子小
+            return "WIN1"; //顺子大
         }else if(isStraight(cardsValue2)){
-            if(cardMap1.size()>2){
-                return "WIN2";
+            if(cardMap1.size()<3 || isFlush1){
+                return "WIN1";
             }
-            return "WIN1";
+            return "WIN2";
         }
 
 
@@ -108,7 +136,7 @@ public class Poker {
                 cardsValue1 =  cardsValue1.stream().filter(card->card != pair).collect(Collectors.toList());
                 cardsValue2 =  cardsValue2.stream().filter(card->card != pair).collect(Collectors.toList());
                 //递归
-                return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2);
+                return compareCardIntegerList(cardsValue1,cardsValue2,cardSize-2,isFlush1,isFlush2);
             }
 
             //d.牌型(mapSize = cardSize-3 = 2)：4+1&4+1 或 4+1&3+2 或 3+2&&3+2

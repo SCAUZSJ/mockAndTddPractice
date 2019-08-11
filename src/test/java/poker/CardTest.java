@@ -161,6 +161,15 @@ public class CardTest {
         Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
     }
 
+    @Test
+    public void should_return_WIN2_when_cardList2_is_flush(){
+
+        Poker poker = new Poker();
+        List<Card> cards1 = Arrays.asList(new Card("3S"),new Card("4D"),new Card("5C"),new Card("6D"),new Card("7H"));
+        List<Card> cards2 = Arrays.asList(new Card("2S"),new Card("4S"),new Card("AS"),new Card("TS"),new Card("8S"));
+        Assert.assertEquals("WIN2",poker.compare(cards1,cards2));
+    }
+
 
 
 }
