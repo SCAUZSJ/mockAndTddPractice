@@ -55,6 +55,23 @@ public class Poker {
         Map<Integer,Integer> cardMap1 = changeToMap(cardsValue1);
         Map<Integer,Integer> cardMap2 = changeToMap(cardsValue2);
 
+        //判断顺子
+        if(isStraight(cardsValue1)){
+            if(isStraight(cardsValue2)){
+                return compareCard(cardsValue1.get(0),cardsValue2.get(0)); //都是顺子，比大小
+            }
+            if(cardMap2.size()>2){
+                return "WIN1"; //顺子大
+            }
+            return "WIN2"; //顺子小
+        }else if(isStraight(cardsValue2)){
+            if(cardMap1.size()>2){
+                return "WIN2";
+            }
+            return "WIN1";
+        }
+
+
         /**
          * size相等，可能如下：
          * 1. 4+1&3+2
@@ -115,6 +132,15 @@ public class Poker {
             return "WIN1";
         }
         return "WIN2";
+    }
+
+    private boolean isStraight(List<Integer> cardsValue) {
+        if(cardsValue.size() == 5){
+             if(cardsValue.get(0) - cardsValue.get(cardsValue.size()-1) == 4){
+                 return true;
+             }
+        }
+        return false;
     }
 
     /**
