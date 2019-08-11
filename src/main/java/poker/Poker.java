@@ -65,7 +65,8 @@ public class Poker {
                return compareCard(cardsValue1.get(0),cardsValue2.get(0));
             }
             return "WIN1";
-        }else if(isFlush2&&isStraight(cardsValue2)){
+        }
+        if(isFlush2&&isStraight(cardsValue2)){
             return "WIN2";
         }
 
@@ -78,7 +79,8 @@ public class Poker {
                 return "WIN1";
             }
             return "WIN2";
-        }else if(isFlush2){
+        }
+        if(isFlush2){
             if(cardMap1.size()>2){
                 return "WIN2";
             }
@@ -94,7 +96,8 @@ public class Poker {
                 return "WIN2"; //顺子小
             }
             return "WIN1"; //顺子大
-        }else if(isStraight(cardsValue2)){
+        }
+        if(isStraight(cardsValue2)){
             if(cardMap1.size()<3 || isFlush1){
                 return "WIN1";
             }
