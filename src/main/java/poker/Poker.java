@@ -98,17 +98,13 @@ public class Poker {
             if(cardMap1.size() == cardSize - 3){
                 if(getFourPair(cardMap1)!= -1){
                     if(getFourPair(cardMap2)!= -1){
-                        // 4+1&4+1
-                        return compareFourPair(cardMap1, cardMap2);
+                        return compareFourPair(cardMap1, cardMap2);//4+1&4+1
                     }
-                    //4+1&4+1
-                    return "WIN1";
+                    return "WIN1";//4+1&3+2
                 }else if(getFourPair(cardMap2)!= -1){
-                    //3+2&4+1
-                    return "WIN2";
+                    return "WIN2";//3+2&4+1
                 }
-                //3+2&&3+2
-                return compareThreePair(cardMap1, cardMap2);
+                return compareThreePair(cardMap1, cardMap2);//3+2&&3+2
             }
         }
 
